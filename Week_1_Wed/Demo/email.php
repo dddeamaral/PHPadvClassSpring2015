@@ -10,7 +10,6 @@
         <?php
         $util = new Util(); //initializes the class
         $validator = new Validator(); //initializes the class in the lib folder
-        $emaildb = new emailtypeDB();
         
         $emailType = filter_input(INPUT_POST, 'emailtype');
         $errors = array();
@@ -23,8 +22,9 @@
         );
 
         $pdo = new DB($dbConfig); //creates the instance with the dbconfig to use in the next statement 
+        var_dump($pdo);
         $db = $pdo->getDB();//I think? that the dbcongif doesn't get passed in getDB since it was passed in initialization above.
-
+        var_dump($db);
         
         
         if( $util->isPostRequest() ){
@@ -45,15 +45,14 @@
             }
         } else {
             
-          $emaildb->storeEmailType($db, $emailType);
-            
-         //$stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype");   //prepares the statement variable with the statement
+          
+         $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype");   //prepares the statement variable with the statement
                     
-        // $values = array(":emailtype"=>$emailType); // not entirely sure what this is doing...***********ask**************
+         $values = array(":emailtype"=>$emailType); // not entirely sure what this is doing...***********ask**************
 
-         //   if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) { //run the statement at the execute function and check the row count
-            //     echo 'Email Added';
-         //   }       
+            if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) { //run the statement at the execute function and check the row count
+                 echo 'Email Added';
+            }       
         }
             
         
