@@ -37,6 +37,24 @@ class emailtypeDB {
        
     }
     
+    
+    public  function displayEmailtype($db){
+         $stmt = $db->prepare("SELECT * FROM emailtype where active = 1"); //selects all from the table basically
+
+    if ($stmt->execute() && $stmt->rowCount() > 0) { //executes and checks to see if the rowcount is more than 0
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC); //if it is, fetch all of the results and store it into results
+
+        foreach ($results as $value) {//for each value in the results array
+            echo '<strong><p>', $value['emailtype'], '</p></strong>'; //echo it out
+        }
+    } else { //else echo no data
+        echo '<p>No Data</p>';
+    }
+    }
+        
+        
+    
+    
  
     
 }
