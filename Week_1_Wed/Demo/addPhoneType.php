@@ -15,7 +15,7 @@
          */
 $util = new Util();
 $validator = new Validator();
-
+$emailtype = new emailtypeDB();
 /*
  * When dealing with forms always collect the data before trying to validate
  * 
