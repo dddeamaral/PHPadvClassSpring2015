@@ -74,7 +74,7 @@
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC); //if it is, fetch all of the results and store it into results
 
         foreach ($results as $value) {//for each value in the results array
-            echo '<p>', $value['emailtype'], '</p>'; //echo it out
+            echo '<strong><p>', $value['emailtype'], '</p></strong>'; //echo it out
         }
     } else { //else echo no data
         echo '<p>No Data</p>';
