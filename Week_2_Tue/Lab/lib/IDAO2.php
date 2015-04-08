@@ -3,7 +3,7 @@
  *
  * @author 001327813
  */
-interface IDAO {
+interface IDAO2 {
       
     public function getById($id);
     

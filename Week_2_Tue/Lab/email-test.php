@@ -15,8 +15,8 @@
             "DB_PASSWORD"=>''
         );
         
+        
         $pdo = new DB($dbConfig);
-        //$pdo = new DB($dbConfig);
         $db = $pdo->getDB();
         
         

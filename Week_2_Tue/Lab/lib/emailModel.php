@@ -15,9 +15,13 @@ class emailModel implements IModel{
     
     private $emailid;
     private $email;
+    private $emailtypeid;
+    private $emailtype;
+    private $emailtypeactive;
     private $logged;
     private $lastupdated;
     private $active;
+    
     
     function getEmailid() {
         return $this->emailid;
@@ -25,6 +29,18 @@ class emailModel implements IModel{
 
     function getEmail() {
         return $this->email;
+    }
+
+    function getEmailtypeid() {
+        return $this->emailtypeid;
+    }
+
+    function getEmailtype() {
+        return $this->emailtype;
+    }
+
+    function getEmailtypeactive() {
+        return $this->emailtypeactive;
     }
 
     function getLogged() {
@@ -47,6 +63,18 @@ class emailModel implements IModel{
         $this->email = $email;
     }
 
+    function setEmailtypeid($emailtypeid) {
+        $this->emailtypeid = $emailtypeid;
+    }
+
+    function setEmailtype($emailtype) {
+        $this->emailtype = $emailtype;
+    }
+
+    function setEmailtypeactive($emailtypeactive) {
+        $this->emailtypeactive = $emailtypeactive;
+    }
+
     function setLogged($logged) {
         $this->logged = $logged;
     }
@@ -59,7 +87,7 @@ class emailModel implements IModel{
         $this->active = $active;
     }
 
-
+    
     
     public function reset() {
         $this->setEmailid('');

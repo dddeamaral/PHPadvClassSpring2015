@@ -23,7 +23,11 @@ class emailDAO implements IDAO2{
         $this->db = $db;
     }
 
-        
+    public function __construct( PDO $db ) {        
+        $this->setDB($db);    
+    }    
+    
+    
     public function getById($id){
         
          $model = new emailModel(); // this creates a dependacy, how can we fix this
@@ -98,11 +102,24 @@ class emailDAO implements IDAO2{
             }
              
         }   else {            
-           //log($db->errorInfo() .$stmt->queryString ) ;           
+                    
         }  
         
         $stmt->closeCursor();         
          return $values;
         
     }
+    
+    
+    public function idExisit($id) {
+           
+        $db = $this->getDB();
+        $stmt = $db->prepare("SELECT emailid FROM email WHERE emailid = :emailid");
+         
+        if ( $stmt->execute(array(':emailid' => $id)) && $stmt->rowCount() > 0 ) {
+            return true;
+        }
+         return false;
+    }
+    
 }
