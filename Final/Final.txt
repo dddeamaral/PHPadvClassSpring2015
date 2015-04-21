@@ -1,0 +1,9 @@
+We are going to do an employee punch in and punch out application. It will be called time-clock.
+-It will take a username/id
+-it will take the time stamp and calculate the hours worked.(Dylan(1 Week))
+-It will output this information to the user after they have punched out.(Dylan(1 Week))
+-It will use objects
+-It will have a login/(Dylan(1 Week))
+registration portion(Anthony(1 week))
+-It will have a panel to see who is currently punched in(Anthony(1 week))
+-It will have a nice interface(Anthony(1 week))
