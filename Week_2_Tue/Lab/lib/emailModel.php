@@ -104,15 +104,12 @@ class emailModel implements IModel{
     
    
     public function map(array $values) {
-        
         if ( array_key_exists('emailid', $values) ) {
             $this->setEmailid($values['emailid']);
         }
-        
         if ( array_key_exists('email', $values) ) {
             $this->setEmail($values['email']);
         }
-        
         if ( array_key_exists('emailtypeid', $values) ) {
             $this->setEmailtypeid($values['emailtypeid']);
         }
@@ -120,19 +117,15 @@ class emailModel implements IModel{
         if ( array_key_exists('emailtype', $values) ) {
             $this->setEmailtype($values['emailtype']);
         }
-        
         if ( array_key_exists('emailtypeactive', $values) ) {
             $this->setEmailtypeactive($values['emailtypeactive']);
         }
-        
         if ( array_key_exists('logged', $values) ) {
             $this->setLogged($values['logged']);
         }
-        
         if ( array_key_exists('lastupdated', $values) ) {
             $this->setLastupdated($values['lastupdated']);
         }
-        
         if ( array_key_exists('active', $values) ) {
             $this->setActive($values['active']);
         }

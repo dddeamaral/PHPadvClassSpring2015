@@ -44,7 +44,7 @@
                    
                    $emailtypeModel = new emailtypeModel();
                    $emailtypeModel->setActive($active);
-                   $emailtypeModel->setEmailtype($emailtype);
+                   $emailtypeModel->setEmailtype($emailType);
                    
                    if($emailtypeDAO->save($emailtypeModel)){
                        echo 'Email Type added.';
@@ -57,7 +57,7 @@
         
         <h3>Add email type</h3>
         <form action="#" method="post">
-            <label>Phone Type:</label> 
+            <label>Email Type:</label> 
             <input type="text" name="emailtype" value="<?php echo $emailType; ?>" placeholder="" />
             <br /><br />
             <label>Active:</label>
