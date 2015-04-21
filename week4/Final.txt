@@ -1,0 +1,3 @@
+We are going to do an employee punch in and punch out application. It will be called time-clock.
+-It will take a username/id
+-it will take the time stamp and calculate the hours worked.
