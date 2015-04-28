@@ -29,15 +29,15 @@
                $validator = new Validator();
                $errors = array();
                if( !$validator->emailTypeIsValid( $emailType ) ){
-                   $errors = 'email type is not valid';
+                   $errors[] = 'email type is not valid';
                }
                if( !$validator->activeIsValid($active) ){
-                   $errors = 'active is not valid.';
+                   $errors[] = 'active is not valid.';
                }
                
                if( count($errors) > 0 ){
-                   foreach ($err as $errz){
-                       echo '<p>' . $errz . '</p>';
+                   foreach ($errors as $errz){
+                       echo '<p>' , $errz , '</p>';
                    }
                }else{
                    $emailtypeDAO = new emailtypeDAO($db);
