@@ -41,23 +41,16 @@
                         echo '<p>',$value,'</p>';
                     }
                 } else {
-                    /*
-                    * Fax,Home,Moble,Pager,Work
-                    */
-                   
+
                     $phoneTypeDAO = new PhoneTypeDAO($db);
                    
                     $phonetypeModel = new PhoneTypeModel();
                     $phonetypeModel->setActive($active);
                     $phonetypeModel->setPhonetype($phoneType);
                     
-                   // var_dump($phonetypeModel);
                     if ( $phoneTypeDAO->save($phonetypeModel) ) {
                         echo 'Phone Added';
                     }
-                    
-                               
-                    
                 }
                 
                 
@@ -76,6 +69,25 @@
              <br /><br />
             <input type="submit" value="Submit" />
         </form>
+         
+         
+         <table border="1" cellpadding="5">
+                <tr>
+                    
+                    <th>Phone Type</th>
+                    <th>Active</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+         <?php 
+            $phones = $phoneTypeDAO->getAllRows(); 
+            foreach ($phones as $value) { //Update this so they can update and delete   '<td>' ,'?href=Update.Php' ,  '</td>'
+                echo '<tr><td>',$value->getPhone(),'</td><td>',$value->getPhonetype(),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
+                echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td></tr>' ;
+            }
+
+         ?>
+            </table>
          
          
          <?php         

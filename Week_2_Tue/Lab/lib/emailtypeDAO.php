@@ -59,7 +59,7 @@ class emailtypeDAO implements IDAO2{
                 
          if ( $this->idExisit($model->getEmailtypeid()) ) {
              $values[":emailtypeid"] = $model->getEmailtypeid();
-             $stmt = $db->prepare("UPDATE emailtype SET emailtype = :emailtype, active = :active WHERE emailtypeid = :phonetypeid");
+             $stmt = $db->prepare("UPDATE emailtype SET emailtype = :emailtype, active = :active WHERE emailtypeid = :emailtypeid");
          } else {             
              $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
          }

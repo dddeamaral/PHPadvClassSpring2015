@@ -94,7 +94,7 @@
                 foreach ($emailTypes as $value) {
                   
                         echo '<tr><td>',$value->getEmailtypeid(),'</td><td>',$value->getEmailtype(),'</td>';  
-                        echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td><td><a href="Delete.php?id=',$value->getEmailtypeid() ,'">Delete</a></td><td><a href="Update.php?id=' , $value->getEmailtypeid() , '">Update</a></td></tr>' ;
+                        echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td><td><a href="emailtype-delete.php?id=',$value->getEmailtypeid() ,'">Delete</a></td><td><a href="emailtype-update.php?id=' , $value->getEmailtypeid() , '">Update</a></td></tr>' ;
                
                 }
             ?>

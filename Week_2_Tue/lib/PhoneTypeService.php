@@ -87,7 +87,7 @@ class PhoneTypeService {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
            
             foreach ($results as $value) {
-                echo '<p>', $value['phonetype'], '</p>';
+                echo '<p>', $value['phonetype'], $value['active'], '</p>';
             }
         } else {
             echo '<p>No Data</p>';
