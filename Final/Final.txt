@@ -1,9 +1,13 @@
-We are going to do an employee punch in and punch out application. It will be called time-clock.
--It will take a username/id
--it will take the time stamp and calculate the hours worked.(Dylan(1 Week))
--It will output this information to the user after they have punched out.(Dylan(1 Week))
--It will use objects
--It will have a login/(Dylan(1 Week))
-registration portion(Anthony(1 week))
--It will have a panel to see who is currently punched in(Anthony(1 week))
--It will have a nice interface(Anthony(1 week))
+
+Anthony Pirolli and Dylan DeAmaral
+-We are going to create a database log of rental cars (Dylan(1 Week)
+-Will have an interface for cars that are in and can be rented.(Anthony(1 week))
+-Will have notes for any damage done to the vehicle. (Dylan(1 Week)
+-Once a car is returned to the rental car provider, it will be available for rent again(Anthony(1 week))
+-Will update automatically once it is turned in, if the damage isn't extensive and is clean (Dylan(1 Week)
+-Have a nice interface(Anthony(1 week))
+-Will use objects for the car and the person renting it(Dylan(1 Week))
+-Displays cars available for rent, once the button that says Rent it, it will update the database to who the renter is and the 
+ of availability(Anthony(1 week))
+
+
