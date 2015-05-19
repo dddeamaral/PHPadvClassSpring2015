@@ -76,4 +76,15 @@ class Renter {
         $this->RentalID = $RentalID;
     }
 
+     public function map(array $values) {
+        
+        foreach ($values as $key => $value) {
+           $method = 'set' . $key;
+            if ( method_exists($this, $method) ) {
+                $this->$method($value);
+            }       
+        } 
+        return $this;
+    }
+    
 }
