@@ -1,12 +1,12 @@
 
 Anthony Pirolli and Dylan DeAmaral
--We are going to create a database log of rental cars (Dylan(1 Week)
+-We are going to create a database log of rental cars (Dylan(1 Week)DONE
 -Will have an interface for cars that are in and can be rented.(Anthony(1 week))
 -Will have notes for any damage done to the vehicle. (Dylan(1 Week)
 -Once a car is returned to the rental car provider, it will be available for rent again(Anthony(1 week))
 -Will update automatically once it is turned in, if the damage isn't extensive and is clean (Dylan(1 Week)
 -Have a nice interface(Anthony(1 week))
--Will use objects for the car and the person renting it(Dylan(1 Week))
+-Will use objects for the car and the person renting it(Dylan(1 Week))DONE
 -Displays cars available for rent, once the button that says Rent it, it will update the database to who the renter is and the 
  of availability(Anthony(1 week))
 
