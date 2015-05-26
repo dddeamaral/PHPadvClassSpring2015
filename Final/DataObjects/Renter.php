@@ -87,4 +87,48 @@ class Renter {
         return $this;
     }
     
+        public function idExisit($id) {
+        
+        $db = $this->getDB();
+        $stmt = $db->prepare("SELECT * FROM final_userinfo WHERE Customer ID = :CustomerID");
+         
+        if ( $stmt->execute(array(':CustomerID' => $id)) && $stmt->rowCount() > 0 ) {
+            return true;
+        }
+         return false;
+    }
+    
+        public function save(IModel $model) {
+                 
+         $db = $this->getDB();
+         
+         $values = array( ":CustomerID" => $model->getCustomerID(),
+                          ":Name" => $model->getName(),
+                          ":Address" => $model->getAddress(),
+                          ":InsuranceProvider" => $model->getInsuranceProvider(),
+                          ":CarRented" => $model->getCarRented(),
+                          ":CarID" => $model->getCarID(),
+                          ":RentalID" => $model->getRentalID()
+                    );
+         
+                
+         if ( $this->idExisit($model->getPhonetypeid()) ) {
+             $values[":CustomerID"] = $model->getCustomerID();
+             $stmt = $db->prepare("UPDATE final_userinfo SET Customer ID = :CustomerID, Name = :Name, Address = :Address, Insurance Provider = :InsuranceProvider"
+                     . "Car Rented = :CarRented, Car ID = :CarID, Rental ID = :RentalID WHERE Customer ID = :CustomerID");
+         } else {             
+             $stmt = $db->prepare("INSERT INTO final_userinfo SET Customer ID = :CustomerID, Name = :Name, Address = :Address, Insurance Provider = :InsuranceProvider"
+                     . "Car Rented = :CarRented, Car ID = :CarID, Rental ID = :RentalID");
+         }
+         
+          
+         if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
+            return true;
+         }
+         
+         return false;
+    }
+    
+    
+    
 }
