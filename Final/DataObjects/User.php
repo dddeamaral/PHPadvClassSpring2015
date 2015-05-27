@@ -124,7 +124,7 @@ class User {
                     );
                 
          if ( $this->idExist($model->getUserId()) ) {
-             $values[":UserID"] = $model->getUserId();
+             $values[":UserId"] = $model->getUserId();
              $stmt = $db->prepare("UPDATE final_users SET UserID = :UserId, Username = :Username, "
                      ."Email = :Email, Password = :Password WHERE UserID = :UserId");
          } else {             

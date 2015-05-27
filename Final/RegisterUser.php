@@ -24,14 +24,18 @@
         $Username = filter_input(INPUT_POST, 'txtUserName');
         $Email = filter_input(INPUT_POST, 'txtEmail');
         $Password = filter_input(INPUT_POST, 'txtPassword');
-        
+//        var_dump($Username);
+//        var_dump($Email);     //Gets expected information
+        //var_dump($Password);
+        echo '<br/>';
        $hashword = password_hash($Password, PASSWORD_DEFAULT);
-       
+      
       
        $User->setEmail($Email);
        $User->setUsername($Username);
        $User->setPassword($hashword);
-       //var_dump($User);
+        var_dump($User);
+        echo '<br/>';
             if($User->save($User)){
                 echo 'User was saved successfully';
 
@@ -65,13 +69,13 @@
 <br/>
     <div class="Login">
         <h1>REGISTER A USER</h1>
-        <div>
+        
         <form action="#" method="post">
-        Username:<input type="text" id="txtUserName" /><br/>
-        Email:<input type="text" id="txtEmail" /><br/>
-        Password:<input type="password" id="Password"/><br/>
+        Username:<input type="text" name="txtUserName" /><br/>
+        Email:<input type="text" name="txtEmail" /><br/>
+        Password:<input type="password" name="txtPassword"/><br/>
         <input type="submit" value="Sign up!" />
-        </div>
+     
         </form>
     </div>
     
