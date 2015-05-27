@@ -15,19 +15,19 @@ class User {
     protected $db = null;
     private $dbConfig = array();
   
-    public function __construct($dbConfig) {
+    public function __construct($dbConfig) {//9:10 5/26/2015
         $this->setDbConfig($dbConfig);      
     }
     
-    private function getDbConfig() {
+    private function getDbConfig() {//9:10 5/26/2015
         return $this->dbConfig;
     }
 
-    private function setDbConfig($dbConfig) {
+    private function setDbConfig($dbConfig) {//9:10 5/26/2015
         $this->dbConfig = $dbConfig;
     }
 
-    public function getDB() { 
+    public function getDB() { //9:10 5/26/2015
         if ( null != $this->db ) {
             return $this->db;
         }
@@ -41,42 +41,46 @@ class User {
         return $this->db;        
     }
 
-     public function closeDB() {        
+     public function closeDB() {    //9:10 5/26/2015    
         $this->db = null;        
     }
     
-    function getUserId() {
+    function getUserId() {//9:10 5/26/2015
         return $this->UserId;
     }
 
-    function setUserId($UserId) {
+    function setUserId($UserId) {//9:10 5/26/2015
         $this->UserId = $UserId;
     }
     
-    function getUsername() {
+    function getUsername() {//9:10 5/26/2015
         return $this->Username;
     }
 
-    function getEmail() {
+    function getEmail() {//9:10 5/26/2015
         return $this->Email;
     }
 
-    function getPassword() {
+    function getPassword() {//9:10 5/26/2015
         return $this->Password;
     }
 
-    function setUsername($Username) {
+    function setUsername($Username) {//9:10 5/26/2015
         $this->Username = $Username;
     }
 
-    function setEmail($Email) {
+    function setEmail($Email) {//9:10 5/26/2015
         $this->Email = $Email;
     }
 
-    function setPassword($Password) {
+    function setPassword($Password) {//9:10 5/26/2015
         $this->Password = $Password;
     }
 
+     public function isPostRequest() { //9:10 5/26/2015
+        return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
+    }
+    
 //    public function reset(){
 //        
 //    }
@@ -98,7 +102,7 @@ class User {
 //        
 //    }
         
-        public function idExist($id) {
+        public function idExist($id) {//9:10 5/26/2015
         
         $db = $this->getDB();
         $stmt = $db->prepare("SELECT * FROM final_users WHERE UserID = :UserId");
@@ -108,10 +112,8 @@ class User {
         }
          return false;
     }
-    
-    
-    
-      public function save($model) {
+        
+      public function save($model) {//9:10 5/26/2015
                  
          $db = $this->getDB();
          
@@ -120,7 +122,6 @@ class User {
                           ":Email" => $model->getEmail(),
                           ":Password" => $model->getPassword(),
                     );
-         
                 
          if ( $this->idExist($model->getUserId()) ) {
              $values[":UserID"] = $model->getUserId();

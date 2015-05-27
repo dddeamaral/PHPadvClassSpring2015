@@ -17,6 +17,9 @@
        
        $User = new User($dbConfig);
         //$User->setDbConfig($dbConfig);
+        if($User->isPostRequest()){
+            
+            
         
         $Username = filter_input(INPUT_POST, 'txtUserName');
         $Email = filter_input(INPUT_POST, 'txtEmail');
@@ -28,7 +31,14 @@
        $User->setEmail($Email);
        $User->setUsername($Username);
        $User->setPassword($hashword);
-       $User->save($User);
+       //var_dump($User);
+            if($User->save($User)){
+                echo 'User was saved successfully';
+
+            }else{
+                echo 'User was not saved successfully.';
+            }
+        }
         ?>
         
             <title>Home</title>
