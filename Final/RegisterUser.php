@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include './bootstrap.php'; ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -6,14 +7,28 @@
     </head>
     <body>
         <?php
-        $username = filter_input(INPUT_POST, 'txtUserName');
+       $dbConfig = array(
+        "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
+        "DB_USER"=>'root',      //sets the dbConfig variable to an array
+        "DB_PASSWORD"=>''
+        );
+
+        $pdo = new DB($dbConfig);
+       
+       $User = new User();
+        
+        
+        $Username = filter_input(INPUT_POST, 'txtUserName');
         $Email = filter_input(INPUT_POST, 'txtEmail');
         $Password = filter_input(INPUT_POST, 'txtPassword');
         
        $hashword = password_hash($Password, PASSWORD_DEFAULT);
        
-       $Renter = new Renter();
-       
+      
+       $User->setEmail($Email);
+       $User->setUsername($Username);
+       $User->setPassword($hashword);
+       $User->save($User);
         ?>
         
             <title>Home</title>
