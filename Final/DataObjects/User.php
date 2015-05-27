@@ -14,8 +14,7 @@ class User {
     private $UserId;
     protected $db = null;
     private $dbConfig = array();
-   
- 
+  
     public function __construct($dbConfig) {
         $this->setDbConfig($dbConfig);      
     }
@@ -27,7 +26,7 @@ class User {
     private function setDbConfig($dbConfig) {
         $this->dbConfig = $dbConfig;
     }
-    
+
     public function getDB() { 
         if ( null != $this->db ) {
             return $this->db;
@@ -46,7 +45,6 @@ class User {
         $this->db = null;        
     }
     
-    
     function getUserId() {
         return $this->UserId;
     }
@@ -54,8 +52,8 @@ class User {
     function setUserId($UserId) {
         $this->UserId = $UserId;
     }
-
-        function getUsername() {
+    
+    function getUsername() {
         return $this->Username;
     }
 
@@ -124,7 +122,7 @@ class User {
                     );
          
                 
-         if ( $this->idExist($model->getPhonetypeid()) ) {
+         if ( $this->idExist($model->getUserId()) ) {
              $values[":UserID"] = $model->getUserId();
              $stmt = $db->prepare("UPDATE final_users SET UserID = :UserId, Username = :Username, "
                      ."Email = :Email, Password = :Password WHERE UserID = :UserId");

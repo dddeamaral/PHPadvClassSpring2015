@@ -9,14 +9,14 @@
         <?php
        $dbConfig = array(
         "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
-        "DB_USER"=>'root',      //sets the dbConfig variable to an array
+        "DB_USER"=>'root',      
         "DB_PASSWORD"=>''
         );
 
-        $pdo = new DB($dbConfig);
+        //$pdo = new DB($dbConfig);
        
-       $User = new User();
-        
+       $User = new User($dbConfig);
+        //$User->setDbConfig($dbConfig);
         
         $Username = filter_input(INPUT_POST, 'txtUserName');
         $Email = filter_input(INPUT_POST, 'txtEmail');
@@ -54,11 +54,14 @@
 </div>
 <br/>
     <div class="Login">
-        <<form action="#" method="post">
+        <h1>REGISTER A USER</h1>
+        <div>
+        <form action="#" method="post">
         Username:<input type="text" id="txtUserName" /><br/>
         Email:<input type="text" id="txtEmail" /><br/>
         Password:<input type="password" id="Password"/><br/>
         <input type="submit" value="Sign up!" />
+        </div>
         </form>
     </div>
     
