@@ -1,10 +1,8 @@
 <?php
-namespace API\models\services;
 
-final class Index {
-    
+
+final class Index {  
     public function __construct() {
-        // error reporting - all errors for development (ensure you have display_errors = On in your php.ini file)
         error_reporting(E_ALL | E_STRICT);
         mb_internal_encoding('UTF-8');           
         spl_autoload_register(array($this, 'loadClass'));
@@ -34,21 +32,14 @@ final class Index {
                 break;
             } 
         }  
-
     }
-
  }
 
 
 
  function runPage() {
-     
     $_configURL = '.' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.ini.php';
     $index = new Index();    
-
-    /*
-     * Functions to use for Dependency Injection
-     */
     $_config = new Config($_configURL);
     $_log = new FileLogging();
     $_pdo = new DB($_config->getConfigData('db:dev'), $_log);
@@ -62,17 +53,10 @@ final class Index {
 
     $_emailTypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
     $_emailService = new EmailService($_emailDAO, $_emailTypeService, $_validator, $_emailModel );        
-     
-     
-    /*
-     * Rest Server
-     */
-     
+     // Rest Server
     $_restServerModel = new RestServerModel();
     $_restServerResponseModel = new RestServerResponseModel();    
     $_restServer = new RestServer( $_restServerModel, $_restServerResponseModel, $_log );
-
-    //http://php.net/manual/en/functions.anonymous.php
 
     $_restServer->addDIResourceRequest('emailtypes', function() use ($_emailTypeService ) {       
         return new EmailtypeRequest($_emailTypeService);
@@ -81,8 +65,7 @@ final class Index {
         return new EmailRequest($_emailService);
     })
     ;
-    // run application!
-    //echo $_restServer->authorized();
+
     echo $_restServer->process();
 }
     
