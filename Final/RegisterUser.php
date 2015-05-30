@@ -34,13 +34,15 @@
        $User->setEmail($Email);
        $User->setUsername($Username);
        $User->setPassword($hashword);
-        var_dump($User);
+      
         echo '<br/>';
             if($User->save($User)){
-                echo 'User was saved successfully';
+                $feedback = '';
+                $feedback = 'User was saved <b>successfully</b>';
 
             }else{
-                echo 'User was not saved successfully.';
+                $feedback = '';
+                $feedback = 'User was <b>not</b> saved successfully.';
             }
         }
         ?>
@@ -69,7 +71,8 @@
 <br/>
     <div class="Login">
         <h1>REGISTER A USER</h1>
-        
+<!--       Put feedback here    (Figure out what html entity to put here to echo $feedback) -->
+        <br/>
         <form action="#" method="post">
         Username:<input type="text" name="txtUserName" /><br/>
         Email:<input type="text" name="txtEmail" /><br/>

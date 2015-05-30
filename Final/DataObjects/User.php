@@ -101,6 +101,20 @@ class User {
 //    public function getAllValues(){
 //        
 //    }
+    public function login($model) {
+         
+        $email = $model->getEmail();
+        $password = $model->getPassword();
+        $db = $this->getDB();
+        $stmt = $db->prepare("SELECT * FROM final_users WHERE Email = :Email");
+        if ( $stmt->execute(array(':Email' => $email)) && $stmt->rowCount() > 0 ) {            
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);            
+            return password_verify($password, $results['Password']);            
+        }
+         
+        return false;
+    }
+    
         
         public function idExist($id) {//9:10 5/26/2015
         
@@ -112,8 +126,47 @@ class User {
         }
          return false;
     }
-        
+//        
+//    public function Login($username, $password){
+//         $db = $this->getDB();
+//    
+//         $values = array(
+//             ":Username"=> $username,
+//             ":Password"=>$password
+//         );
+//         $stmt = $db->prepare("SELECT Username, Password FROM final_users Where Password = :Password AND Username = :Username");
+//         
+//          if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
+//            return true;
+//         }
+//         return false;
+//    }
+    
       public function save($model) {//9:10 5/26/2015
+                 
+         $db = $this->getDB();
+         
+         $values = array( ":Username" => $model->getUsername(),
+                          ":Email" => $model->getEmail(),
+                          ":Password" => $model->getPassword(),
+                    );
+                
+//         if ( $this->idExist($model->getUserId()) ) {
+//             $values[":UserId"] = $model->getUserId();
+//             $stmt = $db->prepare("UPDATE final_users SET UserID = :UserId, Username = :Username, "
+//                     ."Email = :Email, Password = :Password WHERE UserID = :UserId");
+//         } else {             
+             $stmt = $db->prepare("INSERT INTO `final_users`(`Username`, `Email`, `Password`) VALUES (:Username,:Email,:Password)");
+         //}
+         
+         if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
+            return true;
+         }
+         return false;
+    }
+
+    
+    public function update($model) {     //9:10 5/26/2015
                  
          $db = $this->getDB();
          
@@ -128,8 +181,7 @@ class User {
              $stmt = $db->prepare("UPDATE final_users SET UserID = :UserId, Username = :Username, "
                      ."Email = :Email, Password = :Password WHERE UserID = :UserId");
          } else {             
-             $stmt = $db->prepare("INSERT INTO final_users SET UserID = :UserId, Username = :Username,"
-                     ." Email = :Email, Password = :Password");
+             $stmt = $db->prepare("INSERT INTO `final_users`(`Username`, `Email`, `Password`) VALUES (:Username,:Email,:Password)");
          }
          
          if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
@@ -137,5 +189,6 @@ class User {
          }
          return false;
     }
-
+    
+    
 }
