@@ -1,5 +1,15 @@
 <!DOCTYPE html>
-<?php include './bootstrap.php'; ?>
+<?php include './bootstrap.php'; 
+
+   function isPostRequest() {
+        return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
+    }
+    
+    function isGetRequest() {
+        return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET' );
+    }
+
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,6 +17,8 @@
     </head>
     <body>
         <?php
+        
+        
        $dbConfig = array(
         "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
         "DB_USER"=>'root',      
@@ -21,28 +33,38 @@
             
             
         
-        $Username = filter_input(INPUT_POST, 'txtUserName');
-        $Email = filter_input(INPUT_POST, 'txtEmail');
-        $Password = filter_input(INPUT_POST, 'txtPassword');
 //        var_dump($Username);
 //        var_dump($Email);     //Gets expected information
         //var_dump($Password);
-        echo '<br/>';
-       $hashword = password_hash($Password, PASSWORD_DEFAULT);
+//        echo '<br/>';
       
       
-       $User->setEmail($Email);
+      $feedback = '';
+      
+      if(isPostRequest()){
+//            echo '<br/>';
+       
+       
+        $Username = filter_input(INPUT_POST, 'txtUserName');
+        $Email = filter_input(INPUT_POST, 'txtEmail');
+        $Password = filter_input(INPUT_POST, 'txtPassword');
+        
+         $hashword = password_hash($Password, PASSWORD_DEFAULT);
+        
+        $User->setEmail($Email);
        $User->setUsername($Username);
        $User->setPassword($hashword);
-      
-        echo '<br/>';
-            if($User->save($User)){
-                $feedback = '';
-                $feedback = 'User was saved <b>successfully</b>';
-
-            }else{
-                $feedback = '';
-                $feedback = 'User was <b>not</b> saved successfully.';
+       
+        
+          if($Username != null && $Email != null && $Password != null){
+                    if($User->save($User)){
+                        $feedback = 'User was saved <b>successfully</b>';
+                    }else{
+                        $feedback = 'User was <b>not</b> saved successfully.';
+                    }
+                }else{
+                    $feedback = 'Please enter all fields.';
+                }
             }
         }
         ?>
@@ -62,16 +84,13 @@
     </style>
 </head>
 <body>
-<div>
-    <a href="AvailableForRent.php" style="border-style: outset; border-width: medium"> Avaliable for Rent </a>&nbsp;&nbsp;
-    <a href="Rented.php" style="border-style: outset; border-width: medium"> Out for Rent </a>&nbsp;&nbsp;
-    <a href="AddCar.php" style="border-style: outset; border-width: medium"> Add Car </a>&nbsp;&nbsp;
-    <a href="Login.php" style="border-style: outset; border-width: medium"> Login </a>&nbsp;&nbsp;
-</div>
+
 <br/>
     <div class="Login">
         <h1>REGISTER A USER</h1>
-<!--       Put feedback here    (Figure out what html entity to put here to echo $feedback) -->
+
+                    <h1><?php if(isset($feedback)){ echo $feedback; }                        ?></h1>
+                    
         <br/>
         <form action="#" method="post">
         Username:<input type="text" name="txtUserName" /><br/>

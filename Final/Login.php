@@ -65,12 +65,12 @@
             
         }
         ?>
-        <div>
+<!--        <div>
     <a href="AvailableForRent.php" style="border-style: outset; border-width: medium"> Avaliable for Rent </a>&nbsp;&nbsp;
     <a href="Rented.php" style="border-style: outset; border-width: medium"> Out for Rent </a>&nbsp;&nbsp;
     <a href="AddCar.php" style="border-style: outset; border-width: medium"> Add Car </a>&nbsp;&nbsp;
     <a href="Login.php" style="border-style: outset; border-width: medium"> Login </a>&nbsp;&nbsp;
-</div>
+</div>-->
         
         
         <div class="Login">

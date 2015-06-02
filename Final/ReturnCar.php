@@ -17,11 +17,11 @@
         $car = new Car($dbConfig);
            
         $carid = filter_input(INPUT_GET, 'id');
-        var_dump($carid);
+        
         if($car->ReturnCar($carid)){
-            echo 'Return was success';
+            header('Location:Rented.php');
         }else{
-            echo 'it wasnt';
+            echo 'It Failed...Please go back.';
         }
         
         ?>

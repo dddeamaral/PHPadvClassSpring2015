@@ -221,7 +221,7 @@ class Car {
     public function ReturnCar($id){
         
          $db = $this->getDB();         
-         $stmt = $db->prepare("UPDATE `final_carrental` SET `Rentable` = 0 WHERE `Car ID` = :CarID");
+         $stmt = $db->prepare("UPDATE `final_carrental` SET `Rentable` = 1, `Customer ID` = NULL WHERE `Car ID` = :CarID");
          
           if ( $stmt->execute(array(':CarID' => $id)) && $stmt->rowCount() > 0 ) {
              return true;
@@ -229,5 +229,15 @@ class Car {
          return false;
     }
     
-
+    public function RentCar($id, $CustomerID){
+        
+         $db = $this->getDB();         
+         $stmt = $db->prepare("UPDATE `final_carrental` SET `Rentable` = 0, `Customer ID` = :CustomerID WHERE `Car ID` = :CarID");
+         
+          if ( $stmt->execute(array(':CarID' => $id, ':CustomerID' => $CustomerID )) && $stmt->rowCount() > 0 ) {
+             return true;
+         }
+         return false;
+    }
+    
 }

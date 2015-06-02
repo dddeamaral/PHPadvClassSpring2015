@@ -19,7 +19,10 @@
         {
             width: 100px;
         }
-
+        #results{
+            background-color: #98d9e0;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -42,26 +45,26 @@
     
     if(isPostRequest())
     {
-        $customerId = filter_input(INPUT_POST, 'customerId');
+       $customerId = filter_input(INPUT_POST, 'customerID');
+       $carid = filter_input(INPUT_GET, 'id');
        
-        
+       
     }
     
     ?>
     
-    
-<div>
+  <div>
     <a href="AvailableForRent.php" style="border-style: outset; border-width: medium"> Avaliable for Rent </a>&nbsp;&nbsp;
     <a href="Rented.php" style="border-style: outset; border-width: medium"> Out for Rent </a>&nbsp;&nbsp;
-<a href="" style="border-style: outset; border-width: medium"> Customer Status </a>&nbsp;&nbsp;
-<a href="" style="border-style: outset; border-width: medium"> Admin </a>&nbsp;&nbsp;
+    <a href="AddCar.php" style="border-style: outset; border-width: medium"> Add Car </a>&nbsp;&nbsp;
+    <a href="Login.php" style="border-style: outset; border-width: medium"> Login </a>&nbsp;&nbsp;
 </div>
+    
 <br />
 <br />
-
 
 <div id = "results" style="border-style: inset; border-width: medium">
-
+    <form action="#" method="post">
     <ul>
         <?php 
          
@@ -71,12 +74,12 @@
             echo '<li>';
             
             echo $value->getCarMake(), ' ', $value->getCarName(),'- id: ' ,$value->getCarID(), ' ';
-            echo '<a href="RentCar.php">Rent</a>';
+            echo '<a href="Rent.php?id=' , $value->getCarID() , '">Rent</a>';
             echo '</li>';
         }
         
         ?>
-        
+        </form>
     </ul>
     
 </div>
