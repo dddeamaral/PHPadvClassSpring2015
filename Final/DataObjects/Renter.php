@@ -128,6 +128,16 @@ class Renter {
          return false;
     }
     
-    
+         public function reset() {
+        $this->setCustomerID('');
+        $this->setName('');
+        $this->setAddress('');
+        $this->setInsuranceProvider('');
+        $this->setCarRented('');
+        $this->setCarID('');
+        $this->setRentalID('');
+
+        return $this;
+    }
     
 }

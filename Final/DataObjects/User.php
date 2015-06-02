@@ -126,6 +126,11 @@ class User {
         }
          return false;
     }
+    
+     public function redirect($page, array $params = array()) {
+        header('Location: ' . $this->createLink($page, $params));
+        die();
+    }
 //        
 //    public function Login($username, $password){
 //         $db = $this->getDB();

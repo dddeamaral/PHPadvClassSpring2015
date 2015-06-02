@@ -170,7 +170,64 @@ class Car {
          }
          return false;
     } 
+    
+    
+       
+    public function reset() {
+        $this->setCarName('');
+        $this->setCustomerID('');
+        $this->setCarMake('');
+        $this->setCarID('');
+        $this->setRentable('');
+        $this->setWeeksToBeRented('');
+        $this->setRentalID('');
 
+        return $this;
+    }
+    
+    public function map(array $values) {
+        
+        if ( array_key_exists('Car Name', $values) ) {
+            $this->setCarName($values['Car Name']);
+        }
+        
+        if ( array_key_exists('Customer ID', $values) ) {
+            $this->setCustomerID($values['Customer ID']);
+        }
+        
+        if ( array_key_exists('Car Make/Model', $values) ) {
+            $this->setCarMake($values['Car Make/Model']);
+        }
+        
+        if ( array_key_exists('Car ID', $values) ) {
+            $this->setCarID($values['Car ID']);
+        }
+        
+        if ( array_key_exists('Rentable', $values) ) {
+            $this->setRentable($values['Rentable']);
+        }
+        
+//        if ( array_key_exists('WeeksToBeRented', $values) ) {
+//            $this->setWeeksToBeRented($values['WeeksToBeRented']);
+//        }
+        
+        if ( array_key_exists('Rental ID', $values) ) {
+            $this->setRentalID($values['Rental ID']);
+        }
+        
+        return $this;
+    }
+
+    public function ReturnCar($id){
+        
+         $db = $this->getDB();         
+         $stmt = $db->prepare("UPDATE `final_carrental` SET `Rentable` = 0 WHERE `Car ID` = :CarID");
+         
+          if ( $stmt->execute(array(':CarID' => $id)) && $stmt->rowCount() > 0 ) {
+             return true;
+         }
+         return false;
+    }
     
 
 }

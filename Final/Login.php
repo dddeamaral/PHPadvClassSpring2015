@@ -54,7 +54,7 @@
             if($User->login($User))
             {
                 $feedback = '<h1>Login was successful</h1>';
-                header('AddCar.php');
+                 header('Location:AddCar.php');
                 //$_SESSION['Loggedin'] = true;  MEANT TO MAKE SESSSIONED LOGINS FUNCTION.
             }
             else
@@ -65,6 +65,14 @@
             
         }
         ?>
+        <div>
+    <a href="AvailableForRent.php" style="border-style: outset; border-width: medium"> Avaliable for Rent </a>&nbsp;&nbsp;
+    <a href="Rented.php" style="border-style: outset; border-width: medium"> Out for Rent </a>&nbsp;&nbsp;
+    <a href="AddCar.php" style="border-style: outset; border-width: medium"> Add Car </a>&nbsp;&nbsp;
+    <a href="Login.php" style="border-style: outset; border-width: medium"> Login </a>&nbsp;&nbsp;
+</div>
+        
+        
         <div class="Login">
         <form action="#" method="post">
             <p><?php  if(isset($feedback)){  echo $feedback; } ?></p>
