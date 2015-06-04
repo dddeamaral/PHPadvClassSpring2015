@@ -40,7 +40,7 @@
     $cars = new CarDao($db);
     $customers = new RenterDao($db);
     $RenterId = $customers->getAllRows();
-    $availableCars = $cars->getAvailable();
+    $availableCars = $cars->getAllcars();
     
     
     if(isPostRequest())

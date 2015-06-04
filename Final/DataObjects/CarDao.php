@@ -73,4 +73,47 @@ class CarDao {
          $stmt->closeCursor();         
          return $values;
     }
+    
+        
+    function getAllcars()
+    {
+        $values = array();
+        $db = $this->getDB();
+        $stmt = $db->prepare("SELECT * FROM final_carrental");
+        
+        if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($results as $value) {
+               $model = new Car($db);
+               $model->reset()->map($value);
+               $values[] = $model;
+            }
+             
+        }   else {            
+           //log($db->errorInfo() .$stmt->queryString ) ;           
+        }  
+        
+         $stmt->closeCursor();         
+         return $values;
+    }
+    
+      public function GetCarByID($id){
+         $values = array();
+          $db = $this->getDB();         
+         $stmt = $db->prepare("Select * FROM `final_carrental` WHERE `Car ID` = :carId");
+         
+         if ( $stmt->execute(array(':carId' => $id)) && $stmt->rowCount() > 0 ) {
+             
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($results as $value) {
+            $model = new Car($db);
+            $model->reset()->map($value);
+            $values[] = $model;
+            }
+         }
+    
+    } 
+    
 }
